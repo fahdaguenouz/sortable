@@ -60,9 +60,9 @@ function createHeader() {
         powerstatsList.style.margin = "0";
         powerstatsList.style.paddingLeft = "20px";
         for (const [stat, value] of Object.entries(hero.powerstats)) {
-          const listItem = document.createElement("li");
-          listItem.textContent = `${stat}: ${value}`;
-          powerstatsList.appendChild(listItem);
+          const li = document.createElement("li");
+          li.textContent = `${stat}: ${value}`;
+          powerstatsList.appendChild(li);
         }
         powerstatsTd.appendChild(powerstatsList);
       
@@ -143,9 +143,9 @@ function createPaggination(heros, perPage = 20) {
   console.log("createpagination");
   
 
- const existingPagination = document.getElementById("pagination-container");
- if (existingPagination) {
-   existingPagination.remove();
+ const paginationCont = document.getElementById("pagination-container");
+ if (paginationCont) {
+   paginationCont.remove();
  }
   
  
@@ -167,18 +167,6 @@ console.log(footer);
     button.textContent = i;
     button.value = i;
     button.className= "btn-pag";
-
-    // button.onclick = function() {
-      // const currentPage = parseInt(this.value);
-       // const start = (currentPage - 1) * perPage;
-       // const end = start + perPage;
-       // const paginatedHeros = heros.slice(start, end);
-       // const existingTable = document.querySelector("table");
-       // if (existingTable) {
-       //   existingTable.remove();
-     // }
-       // createtable(paginatedHeros);
-    // };
     paginationContainer.appendChild(button);
   }
   return paginationContainer
