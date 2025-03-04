@@ -128,7 +128,7 @@ main.appendChild(table)
  
 
 }
-function createSearch(){
+function createSearch(heros){
   const header=document.getElementById("header")
  
   const search=document.createElement("input")
@@ -136,8 +136,25 @@ function createSearch(){
       search.setAttribute("placeholder","search")
       search.className="search"
       header.appendChild(search)
+
+      search.addEventListener("input", (event) => {
+        console.log(event);
+        
+        const letter = event.target.value.toLowerCase();
+        const filteredHeros = heros.filter((hero) => {
+          return hero.name.toLowerCase().includes(letter);
+        });
+        console.log(filteredHeros);
+        const table = document.querySelector("table");
+        if (table) {
+          table.remove();
+        }
+        createtable(filteredHeros);
+      });
   
 }
+
+
 
 function createPaggination(heros, perPage = 20) {
   console.log("createpagination");
@@ -227,8 +244,8 @@ async function Sortable(){
 
 
 //console.log("kok",heros);
-  createSearch()
-    heros=createSelect(heros)
+heros=createSelect(heros)
+createSearch(heros)
 
 }
 
